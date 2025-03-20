@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974079078645",
+    "project_id": "chat---kotlin-50263",
+    "storage_bucket": "chat---kotlin-50263.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974079078645:android:8591d29b879e9a355555bc",
+        "android_client_info": {
+          "package_name": "com.luigidev.chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq2jeq2sPq1-Kk6XfdPv-6sv5-2TXjfUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
