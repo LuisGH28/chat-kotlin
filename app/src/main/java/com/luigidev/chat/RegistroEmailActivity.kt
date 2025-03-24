@@ -97,7 +97,7 @@ class RegistroEmailActivity : AppCompatActivity() {
     }
 
     private fun actaulizarInformacion() {
-        progressDialog.setMessage("Gaurdando informacion")
+        progressDialog.setMessage("Guardando informacion")
 
         val uidU = firebaseAuth.uid
         val nombresU = nombres
