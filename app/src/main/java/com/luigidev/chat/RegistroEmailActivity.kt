@@ -25,7 +25,6 @@ class RegistroEmailActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityRegistroEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        setContentView(R.layout.activity_registro_email)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -43,11 +42,13 @@ class RegistroEmailActivity : AppCompatActivity() {
     }
 
     private var nombres = ""
+    private var apellidos = ""
     private var email = ""
     private var passwd = ""
     private var rPasswd = ""
     private fun validarInformacion() {
         nombres = binding.etNombre.text.toString().trim()
+        apellidos = binding.etApellidos.text.toString().trim()
         email = binding.etEmail.text.toString().trim()
         passwd = binding.etPassword.text.toString().trim()
         rPasswd = binding.etRPassword.text.toString().trim()
@@ -55,6 +56,9 @@ class RegistroEmailActivity : AppCompatActivity() {
         if (nombres.isEmpty()){
             binding.etNombre.error = "Ingresa tu nombre"
             binding.etNombre.requestFocus()
+        }else if(apellidos.isEmpty()){
+            binding.etApellidos.error="Ingresa tus apellidos"
+            binding.etApellidos.requestFocus()
         }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             binding.etEmail.error = "Correo inválido"
             binding.etEmail.requestFocus()
@@ -101,12 +105,14 @@ class RegistroEmailActivity : AppCompatActivity() {
 
         val uidU = firebaseAuth.uid
         val nombresU = nombres
+        val apellidoU = apellidos
         val emailU = firebaseAuth.currentUser!!.email
         val tiempoR = Constantes.obtenerTiempoD()
 
         val datosUsuarios = HashMap<String, Any>()
         datosUsuarios["uid"] = "$uidU"
         datosUsuarios["nombres"] = "$nombresU"
+        datosUsuarios["apellidos"] = "$apellidoU"
         datosUsuarios["email"] = "$emailU"
         datosUsuarios["tiempoR"] = "$tiempoR"
         datosUsuarios["preoveedor"] = "Email"

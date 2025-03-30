@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.luigidev.chat.Constantes
+import com.luigidev.chat.EditarInformacion
 import com.luigidev.chat.OpcionesLoginActivity
 import com.luigidev.chat.R
 import com.luigidev.chat.databinding.FragmentPerfilBinding
@@ -44,6 +45,10 @@ class FragmentPerfil : Fragment() {
 
         cargarInformacion()
 
+        binding.btnActualizarInfo.setOnClickListener{
+            startActivity(Intent(mContex, EditarInformacion::class.java))
+        }
+
         binding.btnCerrarSesion.setOnClickListener{
             firebaseAuth.signOut()
             startActivity(Intent(mContex, OpcionesLoginActivity::class.java))
@@ -57,6 +62,7 @@ class FragmentPerfil : Fragment() {
             .addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val nombres = "${snapshot.child("nombres").value}"
+                    val apellidos = "${snapshot.child("apellidos").value}"
                     val email = "${snapshot.child("email").value}"
                     val preoveedor = "${snapshot.child("preoveedor").value}"
                     var tiempoR = "${snapshot.child("tiempoR").value}"
@@ -71,6 +77,7 @@ class FragmentPerfil : Fragment() {
                      */
 
                     binding.tvNombres.text = nombres
+                    binding.tvApellidos.text = apellidos
                     binding.tvEmail.text = email
                     binding.tvProveedor.text = preoveedor
                     binding.tvTRegistro.text = fecha
