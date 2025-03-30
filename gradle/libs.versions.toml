@@ -11,6 +11,8 @@ activity = "1.9.1"
 constraintlayout = "2.1.4"
 googleServicesV= "4.4.2"
 loginGoogleV = "21.0.0"
+circleImageV="3.1.0"
+glideV="4.16.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -22,6 +24,8 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 loginGoogle={group="com.google.android.gms", name="play-services-auth", version.ref="loginGoogleV"}
+circleImage={group="de.hdodenhof", name="circleimageview", version.ref="circleImageV"}
+glide={group="com.github.bumptech.glide", name="glide", version.ref="glideV"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

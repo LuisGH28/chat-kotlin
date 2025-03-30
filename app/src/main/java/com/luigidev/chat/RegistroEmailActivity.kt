@@ -111,6 +111,7 @@ class RegistroEmailActivity : AppCompatActivity() {
         datosUsuarios["tiempoR"] = "$tiempoR"
         datosUsuarios["preoveedor"] = "Email"
         datosUsuarios["estado"] = "Online"
+        datosUsuarios["imagen"] = ""
 
         val reference = FirebaseDatabase.getInstance().getReference("Usuarios")
         reference.child(uidU!!)
