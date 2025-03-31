@@ -37,12 +37,11 @@ class OpcionesLoginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityOpcionesLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        setContentView(R.layout.activity_opciones_login)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+//            insets
+//        }
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -125,17 +124,22 @@ class OpcionesLoginActivity : AppCompatActivity() {
 
         val uidU = firebaseAuth.uid
         val nombresU = firebaseAuth.currentUser!!.displayName
+        val apellidosU = firebaseAuth.currentUser!!.displayName
         val emailU = firebaseAuth.currentUser!!.email
         val tiempoR = Constantes.obtenerTiempoD()
+        val imagen = firebaseAuth.currentUser!!.photoUrl
 
-        val datosUsuarios = HashMap<String, Any>()
-        datosUsuarios["uid"] = "$uidU"
-        datosUsuarios["nombres"] = "$nombresU"
-        datosUsuarios["email"] = "$emailU"
-        datosUsuarios["tiempoR"] = "$tiempoR"
-        datosUsuarios["preoveedor"] = "Google"
-        datosUsuarios["estado"] = "Online"
-        datosUsuarios["imagen"] = ""
+
+        val datosUsuarios = HashMap<String, Any>().apply {
+            put("uid", "$uidU")
+            put("nombres", "$nombresU")
+            put("apellidos", "$apellidosU")
+            put("email", "$emailU")
+            put("tiempoR", "$tiempoR")
+            put("preoveedor", "Google")
+            put("estado", "Online")
+            put("imagen", "$imagen")
+        }
 
         val reference = FirebaseDatabase.getInstance().getReference("Usuarios")
         reference.child(uidU!!)
