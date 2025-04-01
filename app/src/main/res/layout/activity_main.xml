@@ -30,8 +30,8 @@
         
     </RelativeLayout>   
 
-    <FrameLayout
-        android:id="@+id/fragmentoFl"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_above="@id/bottomNV"
         android:layout_below="@id/toolbarRL"
         android:layout_width="match_parent"

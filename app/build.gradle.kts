@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.loginGoogle)
     implementation(libs.circleImage)
     implementation(libs.glide)
+    implementation(libs.viewpager2)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

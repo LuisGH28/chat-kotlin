@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.auth.FirebaseAuth
 import com.luigidev.chat.Fragmentos.FragmentChats
 import com.luigidev.chat.Fragmentos.FragmentPerfil
@@ -20,76 +21,56 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        // Access to the views
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
-
-
-
         firebaseAuth = FirebaseAuth.getInstance()
 
         if(firebaseAuth.currentUser == null){
             irOpcionesLogin()
         }
 
-        verFragmentoPerfil()
+        val adapter = ViewPagerAdapter(this)
+        binding.viewPager.adapter = adapter
 
+        // Sincronizar BottomNavigationView con ViewPager2
         binding.bottomNV.setOnItemSelectedListener { item ->
-            when(item.itemId){
-                R.id.item_perfil->{
-                    // Perfil visualization
-                    verFragmentoPerfil()
+            when (item.itemId) {
+                R.id.item_perfil -> {
+                    binding.viewPager.currentItem = 0
+                    binding.tvTitulo.text = "Perfil"
                     true
                 }
-                R.id.item_usuarios->{
-                    verFragmentoUsuarios()
+
+                R.id.item_usuarios -> {
+                    binding.viewPager.currentItem = 1
+                    binding.tvTitulo.text = "Usuarios"
                     true
                 }
-                R.id.item_chats->{
-                    verFragmentoChats()
+
+                R.id.item_chats -> {
+                    binding.viewPager.currentItem = 2
+                    binding.tvTitulo.text = "Chats"
                     true
                 }
-                else->{
-                    false
-                }
+
+                else -> false
             }
         }
+
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                when (position) {
+                    0 -> binding.bottomNV.selectedItemId = R.id.item_perfil
+                    1 -> binding.bottomNV.selectedItemId = R.id.item_usuarios
+                    2 -> binding.bottomNV.selectedItemId = R.id.item_chats
+                }
+            }
+        })
+
     }
 
     private fun irOpcionesLogin() {
         startActivity(Intent(applicationContext, OpcionesLoginActivity::class.java))
         finishAffinity()
-    }
-
-    private fun verFragmentoPerfil(){
-        binding.tvTitulo.text= "Perfil"
-
-        val fragment = FragmentPerfil()
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(binding.fragmentoFl.id, fragment, "Fragment Perfil")
-        fragmentTransaction.commit()
-    }
-
-    private fun verFragmentoUsuarios(){
-        binding.tvTitulo.text= "Usuarios"
-
-        val fragment = FragmentUsuarios()
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(binding.fragmentoFl.id, fragment, "Fragment Usuarios")
-        fragmentTransaction.commit()
-    }
-
-    private fun verFragmentoChats(){
-        binding.tvTitulo.text= "Chats"
-
-        val fragment = FragmentChats()
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(binding.fragmentoFl.id, fragment, "Fragment Chats")
-        fragmentTransaction.commit()
     }
 }
