@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.circleImage)
     implementation(libs.glide)
     implementation(libs.viewpager2)
+    implementation(libs.firebaseStorage)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
