@@ -42,7 +42,7 @@
     <string name="Txt_titulo_edit">Editar informacion</string>
     
     <string name="Txt_olvide_pass">Olvide password</string>
-    <string name="Txt_ingrese_su_email">ingrese su email</string>
+    <string name="Txt_ingrese_su_email">Ingrese su email para el envio de las instruccines de recuperacion</string>
     <string name="btn_Enviar">Enviar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
