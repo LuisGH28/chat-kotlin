@@ -30,6 +30,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import com.luigidev.chat.CambiarPassword
 import com.luigidev.chat.Constantes
 import com.luigidev.chat.EditarInformacion
 import com.luigidev.chat.OpcionesLoginActivity
@@ -110,6 +111,10 @@ class FragmentPerfil : Fragment() {
 
         binding.btnActualizarInfo.setOnClickListener {
             startActivity(Intent(mContext, EditarInformacion::class.java))
+        }
+
+        binding.btnCambiarPass.setOnClickListener{
+            startActivity(Intent(mContext, CambiarPassword::class.java))
         }
 
         binding.btnCerrarSesion.setOnClickListener {
@@ -217,10 +222,6 @@ class FragmentPerfil : Fragment() {
     }
 
     private fun subirImagenStorage(imagenUri: Uri?) {
-
-
-
-
         // Ejecutar la subida después de que el diálogo esté visible
         binding.root.post {
             val rutaImagen = "imagenesPerfil/${firebaseAuth.uid}"
@@ -259,9 +260,6 @@ class FragmentPerfil : Fragment() {
             }
     }
 
-
-
-
     private fun cargarInformacion() {
         FirebaseDatabase.getInstance().getReference("Usuarios")
             .child(firebaseAuth.uid ?: "")
@@ -285,6 +283,10 @@ class FragmentPerfil : Fragment() {
                         .placeholder(R.drawable.ic_img_perfil)
                         .error(R.drawable.ic_img_perfil)
                         .into(binding.ivPerfil)
+
+                    if(proveedor == "Email"){
+                        binding.btnCambiarPass.visibility = View.VISIBLE
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {

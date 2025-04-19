@@ -119,10 +119,23 @@
           android:layout_height="wrap_content"/>
 
       <com.google.android.material.button.MaterialButton
+          android:id="@+id/btn_CambiarPass"
+          android:text="@string/btn_CambiarPass"
+          android:textAllCaps="true"
+          android:layout_below="@+id/btn_ActualizarInfo"
+          android:layout_width="250dp"
+          android:layout_height="wrap_content"
+          android:layout_centerInParent="true"
+          android:visibility="gone"
+          android:layout_marginTop="10dp"
+          app:cornerRadius="8dp"
+          />
+
+      <com.google.android.material.button.MaterialButton
           android:id="@+id/btn_CerrarSesion"
           android:text="@string/btn_CerrarSesion"
           android:textAllCaps="true"
-          android:layout_below="@+id/btn_ActualizarInfo"
+          android:layout_below="@+id/btn_CambiarPass"
           android:layout_marginTop="10dp"
           android:layout_centerInParent="true"
           app:cornerRadius="8dp"
